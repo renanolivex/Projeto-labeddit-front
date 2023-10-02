@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BASE_URL, TOKEN_NAME } from "../constants/url";
 import { GlobalContext } from "../contexts/GlobalContext";
 import { AuthorStyle, DislikeStyle, LikeDislikeContainer, LikeDislikePlace, LikeStyle, NumberStyle, Post, PostStyleContainer } from "./PostCardStyle";
 import { BackgroundColor } from "./HeaderStyle";
 import VectorUp from "../assets/VectorUp.png"
 import VectorDown from "../assets/VectorDown.png"
+import { goToLoginPage } from "../routes/coordinator";
+import { useNavigate } from "react-router-dom";
 
 
 export default function CommentCard(props) {
@@ -13,11 +15,9 @@ export default function CommentCard(props) {
 
 
   const context = useContext(GlobalContext);
-  const { fetchComments } = context;
+  const { fetchComments, fetchPosts, commentCard  } = context;
 
   const [isLoading, setIsLoading] = useState(false)
-
-
 
 
   
@@ -33,16 +33,14 @@ export default function CommentCard(props) {
           Authorization: token
         }
       };
-
       const body = {
         like: true
       }
-
       await axios.put(BASE_URL + `/post_comments/${post.id}/like`, body, config);
-
-      setIsLoading(false)
       fetchComments()
-      window.location.reload()
+      setIsLoading(false)
+      
+    
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
@@ -51,7 +49,6 @@ export default function CommentCard(props) {
 
   const dislike = async () => {
     setIsLoading(true)
-
     try {
       const token = window.localStorage.getItem(TOKEN_NAME);
 
@@ -60,16 +57,13 @@ export default function CommentCard(props) {
           Authorization: token
         }
       };
-
       const body = {
         like: false
       }
-
-      await axios.put(BASE_URL + `/posts/${post.id}/like`, body, config);
-
-      setIsLoading(false)
+      await axios.put(BASE_URL + `/post_comments/${post.id}/like`, body, config);
       fetchComments()
-      window.location.reload()
+      setIsLoading(false)
+     
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
