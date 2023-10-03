@@ -9,7 +9,6 @@ import VectorDown from "../assets/VectorDown.png"
 import Comments from "../assets/Comments.png"
 import { goToCommentsPage } from "../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import CommentsPage from "../pages/CommentsPage/CommentsPage";
 
 export default function PostCard(props) {
   const { post } = props;

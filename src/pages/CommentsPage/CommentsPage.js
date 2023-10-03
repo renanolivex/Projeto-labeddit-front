@@ -25,22 +25,9 @@ export default function CommentsPage(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [postsContent, setPostsContent] = useState("")
 
-  console.log(commentsCard)
-  console.log(comments)
 
 
-  useEffect(() => {
-    const token = window.localStorage.getItem(TOKEN_NAME);
-
-    if (!token) {
-      goToLoginPage(navigate);
-    } else {
-      fetchPosts();
-       fetchComments();
-       
-      
-    }
-  }, []);
+ 
 
 
   const createPosts = async (e) => {
@@ -74,7 +61,6 @@ export default function CommentsPage(props) {
   };
 
 
-  
   const like = async () => {
     setIsLoading(true)
 
@@ -92,13 +78,10 @@ export default function CommentsPage(props) {
       }
 
       await axios.put(BASE_URL + `/posts/${comments.id}/like`, body, config);
-
   
       fetchPosts()
       setIsLoading(false)
-      
-  
-      
+         
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
@@ -122,19 +105,16 @@ export default function CommentsPage(props) {
       }
 
       await axios.put(BASE_URL + `/posts/${comments.id}/like`, body, config);
-
-     
       fetchPosts()
       setIsLoading(false)
-      
       
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
     }
   };
- 
-  console.log(commentsCard)
+  
+  
   return (
     <main>
 
