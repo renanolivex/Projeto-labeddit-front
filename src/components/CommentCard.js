@@ -37,8 +37,9 @@ export default function CommentCard(props) {
         like: true
       }
       await axios.put(BASE_URL + `/post_comments/${post.id}/like`, body, config);
-      fetchComments()
+     
       setIsLoading(false)
+      fetchComments()
       
     
     } catch (error) {
@@ -61,9 +62,9 @@ export default function CommentCard(props) {
         like: false
       }
       await axios.put(BASE_URL + `/post_comments/${post.id}/like`, body, config);
-      fetchComments()
+  
       setIsLoading(false)
-     
+      fetchComments()
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)

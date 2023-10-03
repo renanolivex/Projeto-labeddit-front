@@ -36,7 +36,7 @@ export const PostContainer =styled.section`
 
 
 `
-export const PostPlace = styled.input`
+export const PostPlace = styled.textarea`
 margin-top: 4vh;
 width: 86.5vw;
 margin-left: 4.5vw;
@@ -44,6 +44,8 @@ background-color: #EDEDED;
 height: 15vh;
 border: 0;
 border-radius: 1vh;
+
+
 
 `
 

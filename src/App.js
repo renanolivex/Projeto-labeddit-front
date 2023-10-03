@@ -11,15 +11,13 @@ export default function App() {
 
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     const token = window.localStorage.getItem(TOKEN_NAME);
 
     if (token) {
       fetchPosts();
-      
-      
     }
-  }, []);
+  }, []); */
 
  
   const fetchPosts = async () => {
