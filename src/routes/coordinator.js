@@ -10,8 +10,8 @@ export const goToLoginPage = (navigate) => {
   navigate("/");
 };
 
-export const goToCommentsPage = (navigate, recipeId) => {
-  navigate(`/comments`);
+export const goToCommentsPage = (navigate,id) => {
+  navigate(`/comments/${id}`);
 };
 
 /* export const goToCommentsPage = (navigate, recipeId) => {

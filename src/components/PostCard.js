@@ -14,18 +14,21 @@ export default function PostCard(props) {
   const { post } = props;
 
   const context = useContext(GlobalContext);
-  const { fetchPosts, setComments, fetchComments} = context;
+  const { fetchPosts, setComments, fetchComments, getDetailCard } = context;
 
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate();
 
-  
-  const onClickComments=()=>{
-    goToCommentsPage(navigate, post.id)  
+
+  const onClickComments = (post) => {
+    goToCommentsPage(navigate, post.id)
     setComments(post)
+    getDetailCard(post)
+
     fetchComments()
-}
+  }
+
 
 
   const like = async () => {
@@ -45,13 +48,13 @@ export default function PostCard(props) {
       }
 
       await axios.put(BASE_URL + `/posts/${post.id}/like`, body, config);
-      
+
       setIsLoading(false)
       fetchPosts()
       window.location.reload()
-      
-    
-     
+
+
+
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
@@ -75,12 +78,12 @@ export default function PostCard(props) {
       }
 
       await axios.put(BASE_URL + `/posts/${post.id}/like`, body, config);
-      
+
       setIsLoading(false)
       fetchPosts()
-      window.location.reload() 
-   
-      
+      window.location.reload()
+
+
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
@@ -90,39 +93,39 @@ export default function PostCard(props) {
 
 
   return (
-    isLoading?"Carregando":
-    <main>    <PostStyleContainer>
-      
-      <BackgroundColor></BackgroundColor>
-      <AuthorStyle>Enviado por: {post.creator.name}</AuthorStyle>
+    isLoading ? "Carregando" :
+      <main>    <PostStyleContainer>
+
+        <BackgroundColor></BackgroundColor>
+        <AuthorStyle>Enviado por: {post.creator.name}</AuthorStyle>
 
         <Post>{post.content}</Post>
         <LikeDislikeContainer>
-        <LikeDislikePlace>
-        <LikeStyle src={VectorUp}  onClick={like}  style={{ cursor: "pointer" }}>
-           
-        </LikeStyle>
+          <LikeDislikePlace>
+            <LikeStyle src={VectorUp} onClick={like} style={{ cursor: "pointer" }}>
 
-        <NumberStyle><b>
-        {post.likes - post.dislikes}</b></NumberStyle>
+            </LikeStyle>
 
-        <DislikeStyle src={VectorDown}  onClick={dislike} style={{ cursor: "pointer" }}></DislikeStyle>
+            <NumberStyle><b>
+              {post.likes - post.dislikes}</b></NumberStyle>
 
-        </LikeDislikePlace>
-        <CommentsPlaceContainer>
-          <Comment  onClick={()=>{onClickComments() } }src={Comments}/> 
-        </CommentsPlaceContainer>
-        <CommentValorStyle><b>
-          {post.comments}
+            <DislikeStyle src={VectorDown} onClick={dislike} style={{ cursor: "pointer" }}></DislikeStyle>
+
+          </LikeDislikePlace>
+          <CommentsPlaceContainer>
+            <Comment onClick={() => { onClickComments(post) }} src={Comments} />
+          </CommentsPlaceContainer>
+          <CommentValorStyle><b>
+            {post.comments}
           </b>
- 
-        </CommentValorStyle>
+
+          </CommentValorStyle>
 
         </LikeDislikeContainer>
-      
-    </PostStyleContainer>
 
-    </main>
+      </PostStyleContainer>
+
+      </main>
 
   );
 }

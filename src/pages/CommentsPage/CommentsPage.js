@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import PostCard from "../../components/PostCard"
 import { BASE_URL, TOKEN_NAME } from "../../constants/url";
@@ -14,10 +14,13 @@ import Comments from "../../assets/Comments.png"
 import CommentCard from "../../components/CommentCard";
 
 
-export default function CommentsPage(props) {
+
+export default function CommentsPage() {
+
   const navigate = useNavigate();
   const context = useContext(GlobalContext);
-  const { fetchPosts, comments, fetchComments, commentsCard, posts } = context;
+  const { fetchPosts, comments, fetchComments, commentsCard } = context;
+
 
   const [isLoading, setIsLoading] = useState(false)
   const [postsContent, setPostsContent] = useState("")
@@ -28,13 +31,13 @@ export default function CommentsPage(props) {
     if (!token) {
       goToLoginPage(navigate);
     } else {
-      fetchPosts()
+      fetchPosts();
       fetchComments();
+      
      
     }
   }, []);
 
-  console.log(comments.id)
 
 
   const createPosts = async (e) => {
@@ -83,13 +86,11 @@ export default function CommentsPage(props) {
       const body = {
         like: true
       }
-
+      console.log(comments.id)
       await axios.put(BASE_URL + `/posts/${comments.id}/like`, body, config);
-
       fetchPosts()
+      fetchComments()
       setIsLoading(false)
-
-
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
@@ -111,9 +112,10 @@ export default function CommentsPage(props) {
       const body = {
         like: false
       }
-
+      console.log(comments.id)
       await axios.put(BASE_URL + `/posts/${comments.id}/like`, body, config);
       fetchPosts()
+      fetchComments()
       setIsLoading(false)
 
 
@@ -122,14 +124,15 @@ export default function CommentsPage(props) {
       window.alert(error?.response?.data)
     }
   };
-
+ 
 
   return (
+  
 
     isLoading ? "Carregando" :
       <main>
         <Header />
-        <PostStyleContainer>
+         <PostStyleContainer>
 
           <BackgroundColor></BackgroundColor>
           <AuthorStyle>Enviado por: {comments.creator.name}  </AuthorStyle>
@@ -150,7 +153,8 @@ export default function CommentsPage(props) {
             </b>
             </CommentValorStyle>
           </LikeDislikeContainer>
-        </PostStyleContainer>
+        </PostStyleContainer> 
+
         <PostContainer>
           <form onSubmit={createPosts}>
             <PostPlace placeholder="Adicionar comentário" value={postsContent} onChange={(e) => setPostsContent(e.target.value)} />

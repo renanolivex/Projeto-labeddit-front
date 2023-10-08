@@ -58,6 +58,16 @@ margin-top: 2vh;
 border: 0;
 margin-bottom: 1.5vh;
 margin-left: 4vw;
+:hover{ 
+  width: 88vw;
+height: 7vh;
+border-radius: 2vh;
+margin-top: 2vh;
+ background: linear-gradient(90deg, #FF1D52 0%, #FFA528 100%);
+border: 0;
+margin-bottom: 1.5vh;
+margin-left: 4vw;
+}
 
 ;`
 
