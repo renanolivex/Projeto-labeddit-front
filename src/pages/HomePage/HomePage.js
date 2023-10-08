@@ -50,6 +50,7 @@ export default function HomePage() {
       setPostsContent("");
       setIsLoading(false)
       fetchPosts()
+      
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
