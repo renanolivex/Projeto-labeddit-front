@@ -50,7 +50,7 @@ export default function HomePage() {
       setPostsContent("");
       setIsLoading(false)
       fetchPosts()
-      
+
     } catch (error) {
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
@@ -59,26 +59,26 @@ export default function HomePage() {
 
   return (
     <main>
-      <Header/>
-      
+      <Header />
+
       <PostContainer>
         <form onSubmit={createPosts}>
-        
-        <PostPlace placeholder="Escreva seu post" value={postsContent} onChange={(e) => setPostsContent(e.target.value)} />
-         
-          <ButtonEnviar disabled={isLoading}><P2><b>Postar</b></P2></ButtonEnviar>
-         
-        </form>
-        </PostContainer>
 
-        
-    
+          <PostPlace placeholder="Escreva seu post" value={postsContent} onChange={(e) => setPostsContent(e.target.value)} />
+
+          <ButtonEnviar disabled={isLoading}><P2><b>Postar</b></P2></ButtonEnviar>
+
+        </form>
+      </PostContainer>
+
+
+
 
       <Hr />
-         {posts.map((post) => {
-          return <PostCard key={post.id} post={post} />;
-        })}
-      
+      {posts.map((post) => {
+        return <PostCard key={post.id} post={post} />;
+      })}
+
     </main>
   );
 }

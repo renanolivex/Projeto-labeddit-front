@@ -32,7 +32,7 @@ background-color: #FBFBFB;
 
 `
 
-export const Post =styled.p`
+export const Post = styled.p`
 margin-left: 1vh;
 height: 8vh;
 
@@ -70,6 +70,8 @@ margin-top: 0.9vh;
 
 
 
+
+
 `
 
 export const DislikeStyle = styled.img`
@@ -103,7 +105,7 @@ margin-left: 2vw;
 
 `
 
-export const CommentValorStyle =styled.p`
+export const CommentValorStyle = styled.p`
 font-size: 2vh;
 margin-left: -3.5vh;
 

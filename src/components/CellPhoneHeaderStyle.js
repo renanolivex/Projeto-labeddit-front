@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const HeaderPhoneContainer=styled.header`
+export const HeaderPhoneContainer = styled.header`
 display: flex;
 height: 4vh;
 flex-wrap: wrap;
@@ -19,7 +19,7 @@ margin-top: 0.5vh;
 
 `
 
-export const StatusBar =styled.img`
+export const StatusBar = styled.img`
 width: 10vh;
 height: 3vh;
 margin-top: 0.5vh;
