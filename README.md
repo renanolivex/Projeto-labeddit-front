@@ -5,6 +5,9 @@ O projeto foi um requisito do curso de desenvolvimento full-stack da Labenu.
 
 Projeto foi criado para formato de celular.
 
+# Link do Deploy do Front-End
+https://projetolabeddit-renan.surge.sh/posts
+
 # Link para uso dos Paths (Back-end Deploy)
 https://projeto-labeddit-back-izjw.onrender.com
 
